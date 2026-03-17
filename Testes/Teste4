@@ -1,0 +1,146 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+// Estrutura de uma pilha 
+typedef struct {
+    char *item;
+    int topo;
+    int capacidade;
+} Stack;
+
+// Inicializa��o de uma pilha 
+void initStack(Stack *pilha, int capacidade) {
+    pilha->item = malloc(capacidade * sizeof(char));
+    
+    if (!pilha->item) {
+        exit(1);
+    }
+
+    pilha->topo = -1;
+    pilha->capacidade = capacidade;
+}
+
+// Fun��o para adicionar elemento no topo 
+void push(Stack *pilha, char caractere) {
+    if (pilha->topo == pilha->capacidade - 1) {
+        pilha->capacidade *= 2;
+        pilha->item = realloc(pilha->item, pilha->capacidade * sizeof(char));
+
+        if (!pilha->item) {
+            exit(1);
+        }
+    }
+    pilha->item[++pilha->topo] = caractere;
+}
+
+// Fun��o para remover elemento do topo 
+char pop(Stack *pilha) {
+    if (pilha->topo == -1) {
+        return -1;
+    }
+
+    return pilha->item[pilha->topo--];
+}
+
+// Fun��o para retornar elemento do topo
+char top(Stack *pilha) {
+    if (pilha->topo == -1) {
+        return -1;
+    }
+
+    return pilha->item[pilha->topo];
+}
+
+// Verifica se ta vazio
+int empty(Stack *pilha) {
+    return pilha->topo == -1;
+}
+
+// Libera memoria alocada
+void freeStack(Stack *pilha) {
+    free(pilha->item);
+}
+
+int precedencia(char operadores) {
+    if (operadores == '^') {
+        return 3;
+    }
+    if (operadores == '*') {
+        return 2;
+    }
+    if (operadores == '/') {
+        return 2;
+    }
+    if (operadores == '+') {
+        return 1;
+    }
+    if (operadores == '-') {
+        return 1;
+    }
+    return 0; 
+}
+
+
+int main() {
+    int numero;
+    char expressao[401];
+
+    scanf("%d", &numero);
+
+    for (int i=0; i<numero; i++) {
+        int flag = 1;
+
+        scanf(" %s", expressao);
+
+        Stack operadores;
+        initStack(&operadores, 100);
+
+        for (int j=0; expressao[j] != '\0'; j++) {
+            char caractere = expressao[j];
+
+            if (caractere <= 'z' && caractere >= 'a') {
+                printf("%c", caractere);
+            }
+            else if (caractere == '(') {
+                push(&operadores, caractere);
+            }
+            else if (caractere == ')') {
+                while (top(&operadores) != '(' && empty(&operadores) == 0) {
+                    printf("%c", pop(&operadores));
+                }
+
+                pop(&operadores); 
+            }
+            else { 
+                while (empty(&operadores) == 0 && flag == 1) {
+                    char topo = top(&operadores);
+                    if (topo == '(') {
+                        flag = 0;
+                    }
+
+                    int preferenciaTopo = precedencia(topo);
+                    int preferenciaAtual = precedencia(caractere);
+
+                    if (preferenciaTopo > preferenciaAtual || (preferenciaTopo == preferenciaAtual && caractere != '^')) {
+                        printf("%c", pop(&operadores));
+                    } 
+                    else {
+                        flag = 0;
+                    }
+                }
+                push(&operadores, caractere);
+            }
+        }
+
+        while (empty(&operadores) == 0) {
+            printf("%c", pop(&operadores));
+        }
+
+        printf("\n");
+        freeStack(&operadores);
+    }
+
+	return 0;
+}
