@@ -1,0 +1,59 @@
+#include <stdio.h>
+
+int main() {
+    char direcao;
+    int quantidade, fim, espaco;
+
+    fim = 0;
+    espaco = 20;
+
+
+    while (fim == 0) {
+        scanf(" %c", &direcao);
+
+        if (direcao == 'x') {
+            printf(".");
+            for (int d=1; d<=espaco; d++) {
+                printf(" ");
+            }
+            printf("x");
+            fim = 1;
+        }
+        if (fim == 0) {
+            scanf("%d", &quantidade);
+        }
+
+        if (direcao == 'd') {
+            printf(".");
+            for (int a=1; a<=espaco; a++) {
+                    printf(" ");
+                }
+            for (int i=1; i<=quantidade; i++) {
+                printf("->");
+            }
+            printf("\n");
+            espaco += (quantidade * 2);
+        }
+        else if (direcao == 'e') {
+            espaco -= (quantidade * 2);
+            printf(".");
+            for (int b=1; b<=espaco; b++) {
+                    printf(" ");
+                }
+            for (int j=1; j<=quantidade; j++) {
+                printf("<-");
+            }
+            printf("\n");
+        }
+        else if (direcao == 'f') {
+            for (int k=1; k<=quantidade; k++) {
+                printf(".");
+                for (int c=1; c<=espaco; c++) {
+                    printf(" ");
+                }
+                printf("|\n");
+            }
+        }
+    }
+	return 0;
+}
