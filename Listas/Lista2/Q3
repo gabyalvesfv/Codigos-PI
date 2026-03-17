@@ -1,0 +1,150 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int t, x, y, z;
+
+    scanf("%d", &t);    
+    scanf("%d", &x);
+    scanf("%d", &y);
+    scanf("%d", &z);
+
+    int A, B, C;
+    float Af, Bf, Cf;
+    A = (t * x / 100);
+    B = (t * y / 100);
+    C = (t * z / 100);
+
+    Af = (t * x / 100.0);
+    Bf = (t * y / 100.0);
+    Cf = (t * z / 100.0);
+
+    int sobra, distribuido, soma;
+    distribuido = (A + B + C);
+    sobra = t - distribuido;
+
+    int total_beka;
+
+    // Valor final como inteiro
+    if ((A == Af) && (B == Bf) && (C == Cf)) {
+        printf("Cada homem ficou com %d, %d e %d reais, respectivamente\n", A, B, C);
+        total_beka = 3 + sobra;
+
+        if (total_beka >= 7) {
+            printf("Ela conseguiu! Rebeka voltou para casa e apanhou da mae por sumir noite passada!\n");
+        }
+        else if (total_beka < 7) {
+            printf("E parece que Rebeka vai ter que voltar andando...\n");
+        }
+    }
+    else {
+        // 1 real investido
+        A = (t + 1) * x / 100;
+        B = (t + 1) * y / 100;
+        C = (t + 1) * z / 100;
+
+        Af = ((t + 1) * x / 100.0);
+        Bf = ((t + 1) * y / 100.0);
+        Cf = ((t + 1) * z / 100.0);
+
+        distribuido = A + B + C;
+        sobra = (t + 1) - distribuido;
+
+        if (((A == Af) && (B == Bf) && (C == Cf)) && (sobra > 1)) {
+            total_beka = 2 + sobra;
+            printf("Cada homem ficou com %d, %d e %d reais, respectivamente\n", A, B, C);
+            if (total_beka >= 7) {
+                printf("Ela conseguiu! Rebeka voltou para casa e apanhou da mae por sumir noite passada!\n");
+            }
+            else if (total_beka < 7) {
+                printf("E parece que Rebeka vai ter que voltar andando...\n");
+            }
+        }
+        else {
+            // 2 reais investidos
+            A = (t + 2) * x / 100;
+            B = (t + 2) * y / 100;
+            C = (t + 2) * z / 100;
+
+            Af = ((t + 2) * x / 100.0);
+            Bf = ((t + 2) * y / 100.0);
+            Cf = ((t + 2) * z / 100.0);
+
+            distribuido = A + B + C;
+            sobra = (t + 2) - distribuido;
+
+            if (((A == Af) && (B == Bf) && (C == Cf)) && (sobra > 2)) {
+                char letra1, letra2, letra3;
+
+                scanf(" %c", &letra1);
+                scanf(" %c", &letra2);
+                scanf(" %c", &letra3);
+
+                soma = ((letra1 - 96) + (letra2 - 96) + (letra3 - 96));
+
+                total_beka = 1 + sobra;
+                printf("Cada homem ficou com %d, %d e %d reais, respectivamente\n", A, B, C);
+                printf("%d\n", soma);
+                if (total_beka >= 7) {
+                    printf("Ela conseguiu! Rebeka voltou para casa e apanhou da mae por sumir noite passada!\n");
+                }
+                else if (total_beka < 7) {
+                    printf("E parece que Rebeka vai ter que voltar andando...\n");
+                }
+            }
+            else {
+                // 3 reais investidos
+                A = (t + 3) * x / 100;
+                B = (t + 3) * y / 100;
+                C = (t + 3) * z / 100;
+
+                Af = ((t + 3) * x / 100.0);
+                Bf = ((t + 3) * y / 100.0);
+                Cf = ((t + 3) * z / 100.0);
+
+                distribuido = A + B + C;
+                sobra = (t + 3) - distribuido;
+
+                if (((A == Af) && (B == Bf) && (C == Cf)) && (sobra > 3)) {
+                    int idade1, idade2, idade3;
+
+                    scanf("%d", &idade1);
+                    scanf("%d", &idade2);
+                    scanf("%d", &idade3);
+
+                    total_beka = sobra;
+                    printf("Cada homem ficou com %d, %d e %d reais, respectivamente\n", A, B, C);
+
+                    int d1, d2, d3;
+                    
+                    if (idade1 % 3 == 0) {
+                        d1 = (idade1 / 3);
+                    }
+                    if (idade2 % 3 == 0) {
+                        d2 = (idade2 / 3);
+                    }
+                    if (idade3 % 3 == 0) {
+                        d3 = (idade3 / 3);
+                    }
+                    
+                    soma = (d1 + d2 + d3);
+                    printf("%d\n", soma);
+
+                    if (total_beka >= 7) {
+                        printf("Ela conseguiu! Rebeka voltou para casa e apanhou da mae por sumir noite passada!\n");
+                    }
+                    else if (total_beka < 7) {
+                        printf("E parece que Rebeka vai ter que voltar andando...\n");
+                    }
+                }
+                else {
+                    printf("Nao foi dessa vez que Rebeka pode ajudar...\n");
+                    printf("E parece que Rebeka vai ter que voltar andando...\n");
+                }
+            }
+        }
+    }
+
+
+    return 0;
+}
