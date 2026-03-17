@@ -1,0 +1,61 @@
+#include <stdio.h>
+
+
+int main() {
+    int dia, mes, ano, N, Q, Y;
+    int primo, mes_extra, ano_extra, diaF, mesF, anoF;
+    Y = 0;
+
+    scanf("%d/%d/%d", &dia, &mes, &ano);
+    scanf("%d", &N);
+
+    for (int i=1; i<=N; i++) {
+        scanf("%d", &Q);
+
+        for (int j=2; j<Q; j++) {
+            if (Q % j != 0) {
+                primo = 1;
+            }
+            else {
+                primo = 0;
+                break;
+            }
+        }
+
+        if (Q % 2 == 1 && primo == 1) {
+            Y -= Q;
+        }
+        else {
+            Y += Q;
+        }
+    }
+
+    if (Y < 0) {
+        printf("Matheusinho precisa parar AGORA ou vai de F\n");
+    }
+    else if (Y > 0) {
+        if (Y + dia > 30) {
+            diaF = (Y + dia) % 30;
+            mes_extra = (Y + dia) / 30;
+
+            if (mes + mes_extra > 12) {
+                mesF = (mes + mes_extra) % 12;
+                ano_extra = (mes + mes_extra) / 12;
+                anoF = ano + ano_extra;
+            }
+            else {
+                mesF = mes + mes_extra;
+                anoF = ano;
+            }
+        }
+        else {
+            diaF = Y + dia; 
+            mesF = mes;
+            anoF = ano;
+        }
+
+        printf("Matheusinho tem %d dias pra se recuperar\n", Y);
+        printf("Se n�o vai de F em %d/%d/%d\n", diaF, mesF, anoF);
+    }
+	return 0;
+}
