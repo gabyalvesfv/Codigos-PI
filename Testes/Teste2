@@ -1,0 +1,117 @@
+#include <stdio.h>
+
+int main() {
+    int dia_inicial, mes_inicial, ano_inicial;
+    int horas_atuais, min_atuais, horas_amigo, min_amigo;
+
+    scanf ("%d %d %d", &dia_inicial, &mes_inicial, &ano_inicial);
+    scanf("%d %d", &horas_atuais, &min_atuais );
+    scanf("%d %d", &horas_amigo, &min_amigo);
+
+    //  Todo ano � bissexto se for m�ltiplo de 4 com a exce��o dos anos m�ltiplos de 100 que n�o s�o m�ltiplos de 400.
+
+    int trans_hora, trans_dias, trans_mes, trans_ano;
+    int resto_min, resto_hora;
+    int horas_total, min_total;
+    int soma_dias, dia_final, mes_final, ano_final;
+
+    // Transforma��o de minuto pra hora
+    trans_hora = (min_amigo + min_atuais)/60;
+    resto_min = (min_amigo + min_atuais)%60;
+
+    // Transforma��o de hora pra dias
+    trans_dias = (horas_atuais + horas_amigo + trans_hora)/24;
+    resto_hora = (horas_atuais + horas_amigo + trans_hora)%24;
+
+    soma_dias = trans_dias + dia_inicial;
+
+    // defini��o de condicional partindo do ano, mes
+    // Se o ano for bissexto (Fevereiro com 29 dias)
+    if ((ano_inicial % 4 == 0) || ((ano_inicial % 100 == 0) && (ano_inicial % 400 != 0))) {
+        // Se o mes tem 30 dias
+        if ((mes_inicial == 4) ||  (mes_inicial == 6) || (mes_inicial == 9) || (mes_inicial == 11)) {
+            if (soma_dias <= 30) {
+                dia_final = soma_dias;
+                mes_final = mes_inicial;
+            }
+            else {
+                dia_final = soma_dias - 30;
+                mes_final = mes_inicial + 1;
+            }
+        }
+        // Se o mes tem 31 dias
+        else if ((mes_inicial == 1) ||  (mes_inicial == 3) || (mes_inicial == 5) || (mes_inicial == 7) || (mes_inicial == 8) || (mes_inicial == 10) || (mes_inicial == 12)) {
+            if (soma_dias <= 31) {
+                dia_final = soma_dias;
+                mes_final = mes_inicial;
+            }
+            else {
+                dia_final = soma_dias - 31;
+                mes_final = mes_inicial + 1;
+            }
+        }
+        // Se o mes tem 29 dias
+        else if (mes_inicial == 2) {
+            if (soma_dias <= 29) {
+                dia_final = soma_dias;
+                mes_final = mes_inicial;
+            }
+            else {
+                dia_final = soma_dias - 29;
+                mes_final = mes_inicial + 1;
+            }
+        }
+    }
+    // Se o ano n�o for bissexto
+    else {
+        // Se o mes tem 30 dias
+        if ((mes_inicial == 4) ||  (mes_inicial == 6) || (mes_inicial == 9) || (mes_inicial == 11)) {
+            if (soma_dias <= 30) {
+                dia_final = soma_dias;
+                mes_final = mes_inicial;
+            }
+            else {
+                dia_final = soma_dias - 30;
+                mes_final = mes_inicial + 1;
+            }
+        }
+        // Se o mes tem 31 dias
+        else if ((mes_inicial == 1) ||  (mes_inicial == 3) || (mes_inicial == 5) || (mes_inicial == 7) || (mes_inicial == 8) || (mes_inicial == 10) || (mes_inicial == 12)) {
+            if (soma_dias <= 31) {
+                dia_final = soma_dias;
+                mes_final = mes_inicial;
+            }
+            else {
+                dia_final = soma_dias - 31;
+                mes_final = mes_inicial + 1;
+            }
+        }
+        // Se o mes tem 28 dias
+        else if (mes_inicial == 2) {
+            if (soma_dias <= 28) {
+                dia_final = soma_dias;
+                mes_final = mes_inicial;
+            }
+            else {
+                dia_final = soma_dias - 28;
+                mes_final = mes_inicial + 1;
+            }
+        }
+    }
+
+    // Se mudar de um ano pro outro
+    if (mes_final == 13) {
+        mes_final = 1;
+        ano_final = ano_inicial + 1;
+    }
+    else {
+        ano_final = ano_inicial;
+    }
+
+    printf("%02d\\%02d\\%04d\n", dia_final, mes_final, ano_final);
+    printf("%02d:%02d\n", resto_hora, resto_min);
+    printf("Falta %d dias at� a data que o Esquisito falou\n", trans_dias);
+
+
+    return 0;
+}
