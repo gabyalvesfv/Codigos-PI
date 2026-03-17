@@ -1,0 +1,244 @@
+#include <stdio.h>
+
+int main() {
+    int N, temp, temp2, espaco, espaco2;
+    char C;
+
+    scanf("%d", &N);
+    scanf(" %c", &C);
+
+    temp = N;
+    temp2 = N;
+    espaco = 0;
+    espaco2 = 0;
+    if (N < 2) {
+        printf("Fica muito feio, meu senhor.");
+    }
+    else {
+        // se N for par 
+        if (N % 2 == 0) {
+            // cria��o do X 
+            for (int a=0; a<=N/2; a++) {
+                if (a==0) {
+                    printf("%c", C);
+                    
+                    // Espa�o vazio 
+                    for (int j=temp; j>=1; j--) {
+                        printf(" ");
+                    }
+    
+                    temp -= 2;
+                    espaco += 1;
+    
+                    printf("%c", C);
+                    printf("\n");
+                    }
+    
+                else {
+                    // Espa�o vazio 
+                    for (int k=1; k<=espaco; k++) {
+                        printf(" ");
+                    }
+    
+                    printf("%c", C);
+                
+                    // Espa�o vazio 
+                    for (int j=temp; j>=1; j--) {
+                        printf(" ");
+                    }
+    
+                    temp -= 2;
+                    espaco += 1;
+    
+                    printf("%c", C);
+                    printf("\n");
+                }
+            }
+    
+            temp += 2;
+    
+            for (int b=1; b<=N/2; b++) {
+                temp += 2;
+                espaco -= 1;
+    
+                // Espa�o vazio 
+                for (int m=espaco; m>=2; m--) {
+                    printf(" ");
+                }
+    
+                printf("%c", C);
+    
+                // Espa�o vazio 
+                for (int j=temp; j>=1; j--) {
+                    printf(" ");
+                }
+    
+                printf("%c", C);
+                printf("\n");
+            }
+            printf("\n");
+    
+            // Cria��o do Y 
+            for (int e=1; e<=N/2; e++) {
+                if (e==1) {
+                    printf("%c", C);
+                    
+                    // Espa�o vazio 
+                    for (int f=temp2; f>=1; f--) {
+                        printf(" ");
+                    }
+    
+                    temp2 -= 2;
+                    espaco2 += 1;
+    
+                    printf("%c", C);
+                    printf("\n");
+                    }
+    
+                else {
+                    while (espaco2<N/2) {
+                        // Espa�o vazio 
+                        for (int g=1; g<=espaco2; g++) {
+                            printf(" ");
+                        }
+        
+                        printf("%c", C);
+                    
+                        // Espa�o vazio 
+                        for (int f=temp2; f>=1; f--) {
+                            printf(" ");
+                        }
+        
+                        temp2 -= 2;
+                        espaco2 += 1;
+        
+                        printf("%c", C);
+                        printf("\n");
+                    }
+                }
+            }
+            for (int p=N/2; p>=0; p--) {
+                for (int q=1; q<=espaco2; q++) {
+                    printf(" ");
+                }
+                printf("%c%c\n", C, C);
+            }
+    
+        }
+        else {
+            // Cria��o do X
+            for (int a=0; a<=N/2; a++) {
+                if (a==0) {
+                    printf("%c", C);
+                    
+                    // Espa�o vazio 
+                    for (int j=temp; j>=1; j--) {
+                        printf(" ");
+                    }
+    
+                    temp -= 2;
+                    espaco += 1;
+    
+                    printf("%c", C);
+                    printf("\n");
+                    }
+    
+                else {
+                    // Espa�o vazio 
+                    for (int k=1; k<=espaco; k++) {
+                        printf(" ");
+                    }
+    
+                    printf("%c", C);
+                
+                    // Espa�o vazio 
+                    for (int j=temp; j>=1; j--) {
+                        printf(" ");
+                    }
+    
+                    temp -= 2;
+                    espaco += 1;
+    
+                    printf("%c", C);
+                    printf("\n");
+                }
+    
+            }
+    
+            temp += 2;
+    
+            for (int z=1; z<=espaco; z++) {
+                printf(" ");
+            }
+            printf("%c\n", C);
+    
+            for (int b=0; b<=N/2; b++) {
+                temp += 2;
+                espaco -= 1;
+    
+                // Espa�o vazio 
+                for (int m=espaco; m>=1; m--) {
+                    printf(" ");
+                }
+    
+                printf("%c", C);
+    
+                // Espa�o vazio 
+                for (int j=temp-2; j>=1; j--) {
+                    printf(" ");
+                }
+    
+                printf("%c", C);
+                printf("\n");
+            }
+            printf("\n");
+            
+            // Cria��o do Y 
+            for (int e=0; e<=N/2; e++) {
+                if (e==0) {
+                    printf("%c", C);
+                    
+                    // Espa�o vazio 
+                    for (int f=temp2; f>=1; f--) {
+                        printf(" ");
+                    }
+    
+                    temp2 -= 2;
+                    espaco2 += 1;
+    
+                    printf("%c", C);
+                    printf("\n");
+                    }
+    
+                else {
+                    while (espaco2<=N/2) {
+                        // Espa�o vazio 
+                        for (int g=1; g<=espaco2; g++) {
+                            printf(" ");
+                        }
+        
+                        printf("%c", C);
+                    
+                        // Espa�o vazio 
+                        for (int f=temp2; f>=1; f--) {
+                            printf(" ");
+                        }
+        
+                        temp2 -= 2;
+                        espaco2 += 1;
+        
+                        printf("%c", C);
+                        printf("\n");
+                    }
+                }
+            }
+            for (int p=N/2; p>=0; p--) {
+                for (int q=1; q<=espaco2; q++) {
+                    printf(" ");
+                }
+                printf("%c\n", C);
+            }
+        }
+    }
+    return 0;
+}
