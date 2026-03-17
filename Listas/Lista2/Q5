@@ -1,0 +1,77 @@
+#include <stdio.h>
+
+int main()
+{
+    float hinicial, trajeto, hfinal, min, fim;
+    int vagas_atual, vagas_perdidas;
+
+    scanf("%f", &hinicial);
+    scanf("%f", &trajeto);
+    scanf("%d", &vagas_atual);
+
+    trajeto = trajeto / 60;
+    hfinal = (trajeto + hinicial);
+
+    if (vagas_atual > 25) {
+        vagas_atual = 25;
+    }
+
+    if ((hfinal < 8) || (hinicial < 8) || (hinicial > 20) || (hfinal > 20)) {
+        printf("ulaM esta dormindo\n");
+    }
+    else {
+        // de 8h as 12h
+        if (hinicial <= 12.00 && trajeto > 0) {
+            if (hfinal <= 12.00) {
+                fim = hfinal;
+            }
+            else {
+                fim = 12.00;
+            }
+
+            min = (fim - hinicial) * 60.00;
+            vagas_perdidas = (int)(min / 5.00);
+            vagas_atual -= vagas_perdidas;
+            trajeto -= min;
+            hinicial = fim;
+        }
+        // de 12h as 16h
+        if (hinicial <= 16.00 && trajeto > 0) {
+            if (hfinal <= 16.00) {
+                fim = hfinal;
+            }
+            else {
+                fim = 16.00;
+            }
+
+            min = (fim - hinicial) * 60.00;
+            vagas_perdidas = (int)(min / 4.00);
+            vagas_atual -= vagas_perdidas;
+            trajeto -= min;
+            hinicial = fim;
+        }
+        // de 16h as 20h
+        if (hinicial <= 20.00 && trajeto > 0) {
+            if (hfinal <= 20.00) {
+                fim = hfinal;
+            }
+            else {
+                fim = 20.00;
+            }
+
+            min = (fim - hinicial) * 60.00;
+            vagas_perdidas = (int)(min / 2.00);
+            vagas_atual -= vagas_perdidas;
+            trajeto -= min;
+            hinicial = fim;
+        }
+
+        if (vagas_atual >= 1) {
+            printf("possui vaga para olecraM\n");
+        }
+        else {
+            printf("nao tera vaga\n");
+        }
+    }
+    return 0;
+}
