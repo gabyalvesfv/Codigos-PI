@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+// (M1, M2) s�o letras mai�sculas que ser�o alteradas de acordo com (D1, D2)
+
+int main () {
+    float A1, A2, B1, B2, C1, C2;
+    char M1, M2;
+    int D1, D2;
+    
+    scanf ("%f %f", &A1, &A2);
+    scanf ("%f %f", &B1, &B2);
+    scanf ("%f %f", &C1, &C2);
+    scanf (" %c %c", &M1, &M2);
+    scanf ("%d %d", &D1, &D2);
+
+    float P1, P2;
+    P1 = (A1 + B1 + C1) / 3;
+    P2 = (A2 + B2 + C2) / 3;
+
+    char F1, F2;
+    // Tabela ascii
+    F1 = (((M1 - 65) + D1) % 26) + 65;
+    F2 = (((M2 - 65) + D2) % 26) + 65;
+
+    printf("A pista esta na coordenada: (%.2f, %.2f) e o cod e: %c%c", P1, P2, F1, F2);
+
+    return 0;
+}
