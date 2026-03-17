@@ -1,0 +1,15 @@
+#include <stdio.h>
+
+int main() {
+    int h1, m1, h2, m2;
+    scanf ("%d %d", &h1, &m1);
+    scanf ("%d %d", &h2, &m2);
+    int minutos_totais;
+    minutos_totais = ((m2 + m1) % 60);
+    int horas_extras;
+    horas_extras = ((m1 + m2) / 60);
+    int horas_totais;
+    horas_totais = (h1 + h2 + horas_extras) % 24;
+    printf("Terminarei meu treino por volta das %d horas e %d minutos!", horas_totais, minutos_totais);
+	return 0;
+}
