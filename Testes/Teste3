@@ -1,0 +1,60 @@
+#include <stdio.h>
+
+int main() {
+    int passosMax, linhas, colunas, X, Y;
+    int passos = 0;
+    int flag = 0;
+
+    scanf("%d %d %d", &passosMax, &linhas, &colunas);
+
+    char mapa[linhas][colunas];
+
+    // Recebe a matriz 
+    for (int a=0; a<linhas; a++) {
+        for (int b=0; b<colunas; b++) {
+            scanf(" %c", &mapa[a][b]);
+        }
+    }
+
+    // Acha a a posi??o inicial 
+    for (int a=0; a<linhas; a++) {
+        for (int b=0; b<colunas; b++) {
+            if (mapa[a][b] == 'C') {
+                X = a;
+                Y = b;
+            }
+        }
+    }
+
+    do {
+        if ((mapa[X][Y+1] == '-' || mapa[X][Y+1] == 'P') && (Y < colunas-1)) {
+            Y = Y + 1; 
+            passos += 1;
+        }
+        else if ((mapa[X+1][Y] == '-' || mapa[X+1][Y] == 'P') && (X < linhas-1)) {
+            X = X + 1;
+            passos += 1;
+        }
+
+        if ((mapa[X+1][Y] == '#') && (Y >= colunas-1)) {
+            flag = 1;
+        }
+        else if ((mapa[X][Y+1] == '#') && (X >= linhas-1)) {
+            flag = 1;
+        }
+
+    } while ((mapa[X][Y] != 'P') && (passos <= passosMax) && ((mapa[X+1][Y] != '#') || (mapa[X][Y+1] != '#')) && (flag == 0));
+    
+    if ((mapa[X+1][Y] == '#') && (mapa[X][Y+1] == '#') || (flag == 1)) {
+        printf("Voc� ficou preso e n�o conseguiu salvar a princesa\n");
+    }
+    else if (passos > passosMax) {
+        printf("Voc� n�o conseguiu salvar a princesa a tempo e ela foi de f :(\n");
+    }
+    else if (mapa[X][Y] == 'P') {
+        printf("Com %d passos voc� conseguiu salvar a princesa Cremosa!\n", passos);
+    }
+    
+
+	return 0;
+}
