@@ -1,0 +1,10 @@
+#include <stdio.h>
+
+int main() {
+    char letra1, letra2, letra3, letra4, letra5;
+    scanf ("%c %c %c %c %c", &letra1, &letra2, &letra3, &letra4, &letra5);
+    int soma;
+    soma = (letra1 - 96) + (letra2 - 96) + (letra3 - 96) + (letra4 - 96) + (letra5 - 96);
+    printf ("%d", soma);
+	return 0;
+}
