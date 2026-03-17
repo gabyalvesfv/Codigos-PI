@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+int main() {
+    int N, A, B;
+    long long PA, soma_multiplosA, soma_multiplosB, soma_multiplosAB, soma_total;
+    long long restoA, restoB, quantA, quantB, ultimo_multiploA, ultimo_multiploB, quantAB;
+
+    scanf("%d", &N);
+    scanf("%d %d", &A, &B);
+
+    PA = (long long)N * (N + 1) / 2;
+   
+    restoA = N % A;
+    restoB = N % B;
+
+    quantA = N / A;
+    quantB = N / B;
+
+    ultimo_multiploA = N - restoA;
+    ultimo_multiploB = N - restoB;
+   
+    soma_multiplosA = (quantA * (A + ultimo_multiploA)) / 2;
+    soma_multiplosB = (quantB * (B + ultimo_multiploB)) / 2;
+   
+    quantAB = N / (A * B);
+    soma_multiplosAB = (A * B) * quantAB * (quantAB + 1) / 2;
+
+    soma_total = PA - soma_multiplosA - soma_multiplosB + soma_multiplosAB;
+
+    printf("%lld\n", soma_total);
+
+    if (soma_total % 2 == 0) {
+        printf("L� ele!!!");
+    }
+    else {
+        printf( "Opa xupenio AULAS...");
+    }
+   
+    return 0;
+}
