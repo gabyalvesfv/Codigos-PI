@@ -1,0 +1,144 @@
+#include <stdio.h>
+
+int main() {
+    int N, X , Y , Z;
+
+    scanf("%d %d %d %d", &N, &X, &Y, &Z);
+
+    if (X <= Y && X <= Z) {
+        if (Y <= Z) {
+            if (N - X >= 0) {
+                N -= X;
+                if (N - Y >= 0) {
+                    N -= Y;
+
+                    if (N - Z >= 0) {
+                        printf("3");
+                    }
+                    else {
+                        printf("2");
+                    }
+                }
+                else {
+                    printf("1");
+                }
+            }
+            else {
+                printf("0");
+            }
+        }
+        else if (Z < Y) {
+            if (N - X >= 0) {
+                N -= X;
+                if (N - Z >= 0) {
+                    N -= Z;
+
+                    if (N - Y >= 0) {
+                        printf("3");
+                    }
+                    else {
+                        printf("2");
+                    }
+                }
+                else {
+                    printf("1");
+                }
+            }
+            else {
+                printf("0");
+            }
+        }
+    }
+
+    else if (Y < X && Y <= Z) {
+        if (X <= Z) {
+            if (N - Y >= 0) {
+                N -= Y;
+                if (N - X >= 0) {
+                    N -= X;
+
+                    if (N - Z >= 0) {
+                        printf("3");
+                    }
+                    else {
+                        printf("2");
+                    }
+                }
+                else {
+                    printf("1");
+                }
+            }
+            else {
+                printf("0");
+            }
+        }
+        else if (Z < X) {
+            if (N - Y >= 0) {
+                N -= Y;
+                if (N - Z >= 0) {
+                    N -= Z;
+
+                    if (N - X >= 0) {
+                        printf("3");
+                    }
+                    else {
+                        printf("2");
+                    }
+                }
+                else {
+                    printf("1");
+                }
+            }
+            else {
+                printf("0");
+            }
+        }
+    }
+
+
+    else if (Z < X && Z < Y) {
+        if (X <= Y) {
+            if (N - Z >= 0) {
+                N -= Z;
+                if (N - X >= 0) {
+                    N -= X;
+
+                    if (N - Y >= 0) {
+                        printf("3");
+                    }
+                    else {
+                        printf("2");
+                    }
+                }
+                else {
+                    printf("1");
+                }
+            }
+            else {
+                printf("0");
+            }
+        }
+        else if (Y < X) {
+            if (N - Z >= 0) {
+                N -= Z;
+                if (N - Y >= 0) {
+                    N -= Y;
+
+                    if (N - X >= 0) {
+                        printf("3");
+                    }
+                    else {
+                        printf("2");
+                    }
+                }
+                else {
+                    printf("1");
+                }
+            }
+            else {
+                printf("0");
+            }
+        }
+    }
+    return 0;
+}
