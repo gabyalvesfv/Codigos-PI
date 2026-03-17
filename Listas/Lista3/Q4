@@ -1,0 +1,97 @@
+#include <stdio.h>
+
+int main() {
+    int X, N, f1, f2, f3;
+    int minutos, distancia, distancia_final, canal_final, minutos_final, soma, numero, numero_final;
+    
+    canal_final = 0;
+    minutos = 1000;
+    distancia = 0;
+    f3 = 0;
+    minutos_final = 100000;
+    soma = 0;
+    distancia_final = 1000;
+    numero = 0;
+    numero_final = 1000;
+    
+    scanf("%d %d", &X, &N);
+    
+    for (int i=1; i<=N; i++) {
+        
+        scanf("%d %d", &f1, &f2);
+        
+        if ((f2 >= X) && (f1 <= X)) {
+            
+            if ((f1 == X) || ((X - f1) < (f2 - X))) {
+                minutos = 1;
+                distancia = X - f1;
+                numero = f1;
+            }
+            else if ((f2 == X) || ((X - f1) > (f2 - X))){
+                minutos = 2;
+                distancia = f2 - X;
+                numero = f2;
+            }
+            else if ((X - f1) == (f2 - X)) {
+                minutos = 1;
+                distancia = X - f1;
+                numero = f1;
+            }
+        }
+        else if (f1 > X) {
+            minutos = 1;
+            distancia = f1 - X;
+            numero = f1;
+        }
+        else {
+            minutos = 1000;
+            
+            for (int k=3; k <= minutos; k++) { 
+                f3 = f1 + f2;
+                
+                if (f3 >= X) {
+                    
+                    if ((f2 == X) || ((X - f2) < (f3 - X))) {
+                        minutos = k-1;
+                        distancia = X - f2;
+                        numero = f2;
+                    }
+                    else if ((f3 == X) || ((X - f2) > (f3 - X))){
+                        minutos = k;
+                        distancia = f3 - X;
+                        numero = f3;
+                    }
+                    else if ((X - f2) == (f3 - X)) {
+                        minutos = k-1;
+                        distancia = X - f2;
+                        numero = f2;
+                    }
+                }
+                    if ((minutos != k) && (minutos != k-1)) {
+                        f1 = f2;
+                        f2 = f3;
+                    }
+            }
+        }
+        if (distancia <= distancia_final) {
+            minutos_final = minutos;
+            canal_final = i;
+            distancia_final = distancia;
+            numero_final = numero;
+        }
+    }
+    
+    while (numero_final > 0) {
+        soma += (numero_final % 10);
+        numero_final = numero_final / 10;
+    }
+
+   if (soma > 10) {
+       printf("Xupenio, para ir ao lulupalooza vc deve entrar no canal %d e sera chamado mais ou menos no minuto %d e com o VIP garantido!!!", canal_final, minutos_final);
+   }
+   else {
+       printf("Xupenio, para ir ao lulupalooza vc deve entrar no canal %d e sera chamado mais ou menos no minuto %d, mas o ingresso VIP n�o vai rolar :(", canal_final, minutos_final);
+   }
+    
+	return 0;
+}
